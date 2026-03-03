@@ -6,13 +6,7 @@
 </head>
 <body>
   <script>
-    // Próbuj otworzyć przez spotify: URI (aplikacja)
-    window.location = "spotify:album:1FHy6omwRDs59igwSLZdvk";
-
-    // Fallback po 1.5s → otwórz w przeglądarce
-    setTimeout(function() {
-      window.location = "https://open.spotify.com/album/1FHy6omwRDs59igwSLZdvk";
-    }, 1500);
+    window.location = "intent://album/1FHy6omwRDs59igwSLZdvk#Intent;scheme=spotify;package=com.spotify.music;S.browser_fallback_url=https%3A%2F%2Fopen.spotify.com%2Falbum%2F1FHy6omwRDs59igwSLZdvk;end";
   </script>
   <p>Otwieranie Spotify...</p>
 </body>
