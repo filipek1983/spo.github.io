@@ -5,11 +5,23 @@
   <title>Otwieranie Spotify...</title>
 </head>
 <body>
-  <a id="link" href="intent://album/1FHy6omwRDs59igwSLZdvk#Intent;scheme=spotify;package=com.spotify.music;S.browser_fallback_url=https%3A%2F%2Fopen.spotify.com%2Falbum%2F1FHy6omwRDs59igwSLZdvk;end">
-    Otwórz Spotify
-  </a>
+  <p>Otwieranie Spotify...</p>
   <script>
-    document.getElementById("link").click();
+    const albumId = "1FHy6omwRDs59igwSLZdvk";
+    const fallback = "https://open.spotify.com/album/" + albumId;
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isIOS) {
+      // iOS: Safari obsługuje spotify:// natywnie
+      window.location = "spotify:album:" + albumId;
+      setTimeout(() => { window.location = fallback; }, 1500);
+    } else {
+      // Android Chrome: intent://
+      var a = document.createElement("a");
+      a.href = "intent://album/" + albumId + "#Intent;scheme=spotify;package=com.spotify.music;S.browser_fallback_url=" + encodeURIComponent(fallback) + ";end";
+      document.body.appendChild(a);
+      a.click();
+    }
   </script>
 </body>
 </html>
